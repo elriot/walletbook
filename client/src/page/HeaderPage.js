@@ -10,7 +10,6 @@ export function HeaderPage() {
                 <li>
                     <Link to="/login">
                         <Button message="Login" type="light" outline="true"/>
-                        {/* <button className="btn btn-outline-light">Login</button> */}
                     </Link>
                 </li>
                 <li>

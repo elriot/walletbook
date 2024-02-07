@@ -2,10 +2,11 @@
 // import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HeaderPage } from "./page/HeaderPage";
 import { MainPage } from "./page/MainPage";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SignupPage } from './page/SignupPage';
+import { LoginPage } from './page/LoginPage';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          {/* <Route path="/contact" element={<ContactPage />} /> */}
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </Router>
