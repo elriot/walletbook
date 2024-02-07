@@ -1,5 +1,6 @@
-import "./HeaderPage.css";
+import { Button } from "../components/Button";
 import { Link } from 'react-router-dom';
+import "./HeaderPage.css";
 
 export function HeaderPage() {
     return (
@@ -8,7 +9,8 @@ export function HeaderPage() {
             <ul className="fs-6">
                 <li>
                     <Link to="/login">
-                        <button className="btn btn-outline-light">Login</button>
+                        <Button message="Login" type="light" outline="true"/>
+                        {/* <button className="btn btn-outline-light">Login</button> */}
                     </Link>
                 </li>
                 <li>
