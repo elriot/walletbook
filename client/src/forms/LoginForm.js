@@ -1,63 +1,54 @@
 import { useState } from "react";
-import "./LoginForm.css";
+import { InputField } from "../components/InputField";
+import { WarningMessage } from "../components/WarningMessage";
+import { Button } from "../components/Button";
 
-export function LoginForm({callbackFunction}) {
-    
-    const [loginInfo, setLoginInfo] = useState({email:"", password:""});
+export function LoginForm({ callbackFunction }) {
+
+    const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
     const [warningMsg, setWorningMsg] = useState("");
 
-    const handleEmailInput = (e) =>{
-        if(warningMsg != ""){
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (warningMsg !== "") {
             setWorningMsg("");
         }
-        setLoginInfo({
-            ...loginInfo,
-            email: e.target.value
-        });
-    }
-    const handlePasswordInput = (e) =>{
-        if(warningMsg != ""){
-            setWorningMsg("");
-        }
-        setLoginInfo({
-            ...loginInfo,
-            password: e.target.value
-        });
-    }
+        // console.log("name, value", name, value)
+        setLoginInfo(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
     const submitLoginForm = (e) => {
         e.preventDefault();
-        if(loginInfo.email.length == 0 || loginInfo.password.length ==0){
-            setWorningMsg("please enter email and password.");            
+        if (loginInfo.email.length == 0 || loginInfo.password.length == 0) {
+            setWorningMsg("please enter email and password.");
             return;
         }
-        callbackFunction({data : loginInfo});
+        callbackFunction({ data: loginInfo });
     }
 
-    return <form className="" onSubmit={submitLoginForm}>
-        <div className="mb-4">
-            <label htmlFor="inputEmail" className="form-label">Email address</label>
-            <input
-                onChange={handleEmailInput}
-                value={loginInfo.email}
-                type="email"
-                className="form-control"
-                id="inputEmail"
-                placeholder="name@example.com"
-            />
-        </div>
-        <div className="mb-4">
-            <label htmlFor="inputPassword" className="form-label">Password</label>
-            <input
-                onChange={handlePasswordInput}
-                type="password"
-                className="form-control"
-                id="inputPassword"
-            />
-        </div>
-        <div className="mt-5">
-            <button type="submit" className="btn btn-primary">Login</button>
-            <span className="login-warning-msg">{warningMsg}</span>            
-        </div>           
-    </form>;    
+    return <form onSubmit={submitLoginForm}>
+        <InputField
+            label="Email address"
+            className="mb-4"
+            type="email"
+            name="email"
+            value={loginInfo.email}
+            onChange={handleChange}
+            placeholder="name@example.com"
+            id="inputEmail"
+        />
+        <InputField
+            className="mb-5"
+            label="Password"
+            type="password"
+            name="password"
+            onChange={handleChange}
+            id="inputPassword"
+        />
+        <Button type="submit" style="primary" message="Login"/>
+        <WarningMessage className="m-3 warning-gray" message={warningMsg}/>
+    </form>;
 }

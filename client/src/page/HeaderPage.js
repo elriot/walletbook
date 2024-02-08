@@ -9,7 +9,7 @@ export function HeaderPage() {
             <ul className="fs-6">
                 <li>
                     <Link to="/login">
-                        <Button message="Login" type="light" outline="true"/>
+                        <Button message="Login" style="light" outline="true"/>
                     </Link>
                 </li>
                 <li>
